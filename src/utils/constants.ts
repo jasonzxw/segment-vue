@@ -1,0 +1,1 @@
+const IMAGE_EMBEDDING = "/house.jpeg.npy";
