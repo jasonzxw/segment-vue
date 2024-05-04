@@ -68,7 +68,6 @@ const mouseMove = (e: MouseEvent) => {
     let maskId = getMaskId(position);
     if(lastMouseMoveMakid.value != maskId){
         // 说明没在已选中的masklist需要去生成；
-        selectedMaskList.push(maskId);
         npytoimg(npyFileData.value!,[...selectedMaskList,maskId],canvasRef);
         lastMouseMoveMakid.value = maskId;
     }
@@ -84,10 +83,14 @@ const mouseDown = (e: MouseEvent) => {
     let positon = getPosition(e)
     console.log(positon);
     let maskId = getMaskId(positon);
-    if(selectedMaskList.findIndex(id => id== maskId) == -1){
+
+    let index = selectedMaskList.findIndex(id => id== maskId);
+    if(index == -1){
         selectedMaskList.push(maskId);
-        npytoimg(npyFileData.value!,lastMouseMoveMakid.value == null ? [...selectedMaskList] : [...selectedMaskList,lastMouseMoveMakid.value],canvasRef)
+    }else{
+      selectedMaskList.splice(index,1);
     }
+    npytoimg(npyFileData.value!,lastMouseMoveMakid.value == null ? [...selectedMaskList] : [...selectedMaskList,lastMouseMoveMakid.value],canvasRef)
     // console.log(maskId);
     // npytoimg(npyFileData.value!,[maskId],canvasRef)
 };
