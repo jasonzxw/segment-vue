@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import Segment from './components/Segment.vue';
+import Segment from "./components/Segment.vue";
+import Compress from "./components/Compress.vue";
 </script>
 
 <template>
-<Segment />
+  <Compress />
+  <!-- <Segment /> -->
 </template>
 
 <style scoped>
